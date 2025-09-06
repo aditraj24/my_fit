@@ -88,9 +88,9 @@ export default function App() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen font-sans">
+    <div className="bg-gray-900 min-h-screen font-sans text-white flex flex-col">
       <Sidebar setCurrentPage={setCurrentPage} />
-      <div className="md:ml-64 p-4 md:p-8">{renderPage()}</div>
+      <div className="md:ml-64 p-4 md:p-8 flex-1">{renderPage()}</div>
       <Footer />
     </div>
   );

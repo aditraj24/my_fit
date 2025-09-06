@@ -18,23 +18,23 @@ const WardrobePage = ({
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-4xl font-bold mb-8">3D Wardrobe</h2>
+      <h2 className="text-4xl font-bold mb-8 text-white">3D Wardrobe</h2>
 
-      <div className="bg-white rounded-2xl shadow-lg p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="bg-gray-800 rounded-2xl shadow-lg p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 border border-gray-700">
         {/* 🪞 3D Wardrobe Container */}
         <div
           ref={wardrobeRef}
-          className="relative bg-gray-100 rounded-xl w-full h-[28rem] flex items-center justify-center overflow-hidden"
+          className="relative bg-gray-900 rounded-xl w-full h-[28rem] flex items-center justify-center overflow-hidden border border-gray-600"
         >
           {/* Overlay placeholder text */}
-          <p className="absolute text-gray-500 text-center px-4">
+          <p className="absolute text-green-400 text-center px-4">
             3D Wardrobe loading...
           </p>
         </div>
 
         {/* 👕 Outfit Management */}
         <div className="flex flex-col">
-          <h3 className="text-2xl font-semibold mb-4">Your Outfits</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-green-400">Your Outfits</h3>
 
           {/* Add Outfit Form */}
           <form
@@ -46,32 +46,32 @@ const WardrobePage = ({
               value={newOutfit}
               onChange={(e) => setNewOutfit(e.target.value)}
               placeholder="Add an outfit name..."
-              className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="flex-1 p-3 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 bg-gray-700 text-white placeholder-gray-400"
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors"
+              className="bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-700 transition-colors"
             >
               Add Outfit
             </button>
           </form>
 
           {/* Outfit List */}
-          <ul className="bg-gray-50 rounded-lg p-4 max-h-72 overflow-y-auto space-y-2">
+          <ul className="bg-gray-900 rounded-lg p-4 max-h-72 overflow-y-auto space-y-2 border border-gray-600">
             {outfits.length === 0 ? (
-              <p className="text-center text-gray-500 italic">
+              <p className="text-center text-gray-400 italic">
                 No outfits in your wardrobe.
               </p>
             ) : (
               outfits.map((outfit, index) => (
                 <li
                   key={index}
-                  className="py-2 flex justify-between items-center bg-white rounded-lg px-4 shadow-sm"
+                  className="py-2 flex justify-between items-center bg-gray-800 rounded-lg px-4 shadow-sm border border-gray-700"
                 >
-                  <span className="text-gray-700 font-medium">{outfit}</span>
+                  <span className="text-white font-medium">{outfit}</span>
                   <button
                     onClick={() => removeOutfit(index)}
-                    className="text-red-500 hover:text-red-700 transition-colors"
+                    className="text-red-400 hover:text-red-300 transition-colors"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
