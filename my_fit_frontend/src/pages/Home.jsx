@@ -1,73 +1,56 @@
 import { motion } from "framer-motion";
 
-const HomePage = ({ userProfile, suggestedOutfits, setCurrentPage }) => {
-  const isProfileComplete =
-    userProfile.skinColor && userProfile.size && userProfile.style;
-
+export default function HomePage() {
   return (
-    <div className="container mx-auto">
-      <h2 className="text-4xl font-bold mb-8 text-white">Outfit Suggestions</h2>
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 via-pink-500 to-red-400 text-white overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-black/20 rounded-full blur-3xl"></div>
+      </div>
 
-      {isProfileComplete ? (
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-12">
+        {/* Text Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="bg-gray-800 rounded-xl shadow-md p-6 border border-gray-700"
+          className="flex-1 text-center md:text-left"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          <h3 className="text-2xl font-semibold mb-4 text-green-400">Based on your profile:</h3>
-          <p className="text-lg mb-2 text-gray-300">
-            <span className="font-medium text-white">Skin Color:</span>{" "}
-            {userProfile.skinColor}
-          </p>
-          <p className="text-lg mb-2 text-gray-300">
-            <span className="font-medium text-white">Size:</span> {userProfile.size}
-          </p>
-          <p className="text-lg mb-4 text-gray-300">
-            <span className="font-medium text-white">Style:</span> {userProfile.style}
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+            Dress <span className="text-yellow-300">Your Style</span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-100 max-w-lg">
+            Discover, select, and style outfits that define your personality.
+            Modern fashion, curated for you.
           </p>
 
-          <h4 className="text-xl font-semibold mb-3 text-green-400">Suggested Outfits:</h4>
-          <div className="flex flex-wrap gap-2">
-            {suggestedOutfits.map((item, index) => (
-              <span
-                key={index}
-                className="bg-green-900 text-green-300 px-3 py-1 rounded-full text-sm font-medium border border-green-600"
-              >
-                {item}
-              </span>
-            ))}
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <button className="px-6 py-3 bg-yellow-300 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition">
+              Start Styling
+            </button>
+            <button className="px-6 py-3 bg-white/20 border border-white/40 backdrop-blur-md font-semibold rounded-full hover:bg-white/30 transition">
+              Explore
+            </button>
           </div>
         </motion.div>
-      ) : (
-        <div className="flex flex-col items-center bg-gray-800 p-6 rounded-lg text-center border border-gray-700">
-          <svg
-            className="w-10 h-10 text-green-400 mb-3"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 9v2m0 4h.01m-.01-12a9 9 0 110 18 9 9 0 010-18z"
-            />
-          </svg>
-          <p className="text-lg text-white mb-4">
-            Please complete your user profile to get outfit suggestions.
-          </p>
-          <button
-            onClick={() => setCurrentPage("user")}
-            className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
-          >
-            Go to User Profile
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
 
-export default HomePage;
+        {/* Hero Image */}
+        <motion.div
+          className="flex-1 flex justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <img
+            src="/assets/outfit.png"
+            alt="Fashion Outfit"
+            className="w-[350px] md:w-[500px] drop-shadow-2xl"
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
