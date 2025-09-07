@@ -1,75 +1,94 @@
-import { Palette, Ruler, Shirt } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
-const UserPage = ({ userProfile, handleUserProfileChange, setCurrentPage }) => (
-  <div className="container mx-auto">
-    <h2 className="text-4xl font-bold mb-8 text-white">User Profile</h2>
-    <div className="bg-gray-800 rounded-xl shadow-md p-6 border border-gray-700">
-      <form className="space-y-6">
-        {/* Skin Color */}
-        <div>
-          <label className="text-white font-semibold mb-2 flex items-center gap-2">
-            <Palette className="w-5 h-5 text-green-400" /> Skin Color
-          </label>
-          <select
-            name="skinColor"
-            value={userProfile.skinColor}
-            onChange={handleUserProfileChange}
-            className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700 text-white focus:border-green-400 focus:outline-none"
-          >
-            <option value="">Select...</option>
-            <option value="fair">Fair</option>
-            <option value="tan">Tan</option>
-            <option value="dark">Dark</option>
-          </select>
-        </div>
+export default function UserAuth() {
+  const [isLogin, setIsLogin] = useState(true);
 
-        {/* Undertone */}
-        <div>
-          <label className="text-white font-semibold mb-2 flex items-center gap-2">
-            <Ruler className="w-5 h-5 text-green-400" /> Undertone
-          </label>
-          <select
-            name="size"
-            value={userProfile.size}
-            onChange={handleUserProfileChange}
-            className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700 text-white focus:border-green-400 focus:outline-none"
-          >
-            <option value="">Select...</option>
-            <option value="cool">Cool</option>
-            <option value="warm">Warm</option>
-            <option value="neutral">Neutral</option>
-          </select>
-        </div>
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-600 to-red-500 text-white overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-black/30 rounded-full blur-3xl"></div>
+      </div>
 
-        {/* Preferred Style */}
-        <div>
-          <label className="text-white font-semibold mb-2 flex items-center gap-2">
-            <Shirt className="w-5 h-5 text-green-400" /> Preferred Style
-          </label>
-          <select
-            name="style"
-            value={userProfile.style}
-            onChange={handleUserProfileChange}
-            className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700 text-white focus:border-green-400 focus:outline-none"
-          >
-            <option value="">Select...</option>
-            <option value="casual">Casual</option>
-            <option value="formal">Formal</option>
-            <option value="streetwear">Streetwear</option>
-          </select>
-        </div>
-
-        {/* Save Button */}
-        <button
-          type="button"
-          onClick={() => setCurrentPage("home")}
-          className="w-full bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-green-700 transition-colors"
-        >
-          Save Profile
-        </button>
-      </form>
-    </div>
-  </div>
-);
-
-export default UserPage;
+      {/* Auth Card */}
+      <motion.div
+        key={isLogin ? "login" : "register"} // animates when switching
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 w-full max-w-md bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-white/20"
+      >
+        {isLogin ? (
+          <>
+            <h2 className="text-3xl font-bold mb-6 text-yellow-300">Login</h2>
+            <form className="space-y-4">
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              />
+              <button
+                type="submit"
+                className="w-full py-3 bg-yellow-300 text-black font-semibold rounded-lg shadow-md hover:scale-105 transition"
+              >
+                Log In
+              </button>
+            </form>
+            <p className="mt-4 text-sm text-gray-200">
+              Don’t have an account?{" "}
+              <button
+                onClick={() => setIsLogin(false)}
+                className="text-yellow-300 hover:underline"
+              >
+                Register
+              </button>
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 className="text-3xl font-bold mb-6 text-yellow-300">Register</h2>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              />
+              <button
+                type="submit"
+                className="w-full py-3 bg-yellow-300 text-black font-semibold rounded-lg shadow-md hover:scale-105 transition"
+              >
+                Sign Up
+              </button>
+            </form>
+            <p className="mt-4 text-sm text-gray-200">
+              Already have an account?{" "}
+              <button
+                onClick={() => setIsLogin(true)}
+                className="text-yellow-300 hover:underline"
+              >
+                Log In
+              </button>
+            </p>
+          </>
+        )}
+      </motion.div>
+    </section>
+  );
+}
